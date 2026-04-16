@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="theme-color" content="#f5f5f5">
+    <title>Metro Architect</title>
+    <link rel="manifest" href="manifest.json">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; touch-action: none; -webkit-user-select: none; user-select: none; }
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: #fafafa; overflow: hidden; position: fixed; width: 100%; height: 100%; }
+        #gameCanvas { display: block; background: #fff; }
+        .ui-panel { position: absolute; bottom: 20px; left: 50%; transform: translateX(-50%); background: rgba(255,255,255,0.9); backdrop-filter: blur(10px); border-radius: 16px; padding: 12px 24px; box-shadow: 0 4px 20px rgba(0,0,0,0.08); display: flex; gap: 16px; align-items: center; }
+        .btn { background: #f0f0f0; border: none; padding: 10px 20px; border-radius: 8px; font-size: 14px; color: #333; }
+        .btn-primary { background: #7a9b8c; color: #fff; }
+        .score { position: absolute; top: 20px; left: 20px; font-size: 14px; color: #666; }
+        .score-value { font-size: 24px; font-weight: 300; color: #333; }
+        .game-over { position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%); background: #fff; padding: 40px; border-radius: 20px; box-shadow: 0 10px 40px rgba(0,0,0,0.1); text-align: center; display: none; }
+        .color-picker { display: flex; gap: 8px; }
+        .color-option { width: 32px; height: 32px; border-radius: 50%; border: 2px solid transparent; }
+        .color-option.active { border-color: #333; }
+    </style>
+</head>
+<body>
+    <canvas id="gameCanvas"></canvas>
+    <div class="score"><div>НЕДЕЛЯ</div><div class="score-value" id="weekDisplay">1</div></div>
+    <div class="ui-panel">
+        <div class="color-picker" id="colorPicker"></div>
+        <button class="btn btn-primary" id="startBtn">Старт</button>
+        <button class="btn" id="pauseBtn">Пауза</button>
+    </div>
+    <div class="game-over" id="gameOver">
+        <h2>Игра окончена</h2>
+        <p>Неделя: <span id="finalWeek">0</span></p>
+        <button class="btn btn-primary" onclick="location.reload()">Заново</button>
+    </div>
+    <script src="game.js"></script>
+    <script>if('serviceWorker' in navigator) navigator.serviceWorker.register('sw.js').catch(()=>{});</script>
+</body>
+</html>
